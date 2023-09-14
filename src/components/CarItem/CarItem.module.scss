@@ -1,6 +1,12 @@
+.carItem {
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .carImgWrapper {
     position: relative;
-
 }
 
 .carImg {
@@ -22,7 +28,6 @@
 
 .infoWrapper {
     margin-top: 14px;
-    margin-bottom: 28px;
 }
 
 .basicInfo {
@@ -62,6 +67,9 @@
     border-color: transparent;
     border-radius: 12px;
     transition: background-color 250ms ease-in-out;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: calc(20 / 14);
 
     &:hover, &:focus, &:active {
         background-color: #0B44CD;
