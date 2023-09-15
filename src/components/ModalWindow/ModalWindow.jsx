@@ -38,11 +38,31 @@ export default function ModalWindow({ isOpen = false, onClose, car }) {
     mileage,
   } = car;
 
+  // disable scroll on body
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
     return () => (document.body.style.overflow = 'unset');
   }, []);
+
+  // close modal by 'esc'
+  useEffect(() => {
+    const handleEscClick = evt => {
+      if (evt.code === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleEscClick);
+
+    return () => window.removeEventListener('keydown', handleEscClick);
+  }, [onClose]);
+
+  // close modal by clicking on backdrop
+  const handleClickOnBackdrop = evt => {
+    if (evt.currentTarget === evt.target) {
+      onClose();
+    }
+  };
 
   const splittedConditions = rentalConditions.split('\n');
   const [text, minAge] = splittedConditions[0].split(': ');
@@ -53,7 +73,7 @@ export default function ModalWindow({ isOpen = false, onClose, car }) {
   const backdropClassName = isOpen ? `${backdrop} ${open}` : backdrop;
 
   return (
-    <div className={backdropClassName}>
+    <div className={backdropClassName} onClick={handleClickOnBackdrop}>
       <div className={modal}>
         <button className={closeButton} type="button" onClick={onClose}>
           <AiOutlineClose size={20} className={closeButtonIcon} />
