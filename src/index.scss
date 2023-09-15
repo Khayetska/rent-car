@@ -2,6 +2,10 @@
 
 // перенести всьо в _base.scss
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   color: #f9f7ec;
