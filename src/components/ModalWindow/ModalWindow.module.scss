@@ -1,15 +1,18 @@
+@import 'styles/utils/variables';
+@import 'styles/utils/mixins';
+
 .backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(18, 20, 23, 0.5);
+  background: $secondary-dark-color;
   z-index: 10;
   opacity: 0;
   cursor: pointer;
-  color: #121417;
-  transition: opacity, 250ms ease-in-out;
+  color: $primery-dark-text-color;
+  @include animation (opacity);
 
   &.open {
     opacity: 1;
@@ -29,7 +32,7 @@
   overflow: scroll;
   cursor: default;
   transform: translate(-50%, -50%) scale(0.2);
-  transition: transform 250ms ease-in-out;
+  @include animation (transform);
 
   .backdrop.open & {
     transform: translate(-50%, -50%) scale(1);
@@ -45,12 +48,12 @@
 }
 
 .closeButtonIcon {
-  color: #121417;
-  transition: color 250ms ease-in-out;
+  color: $primery-dark-text-color;
+  @include animation (color);
 
   &:hover,
   &:focus {
-    color: #0b44cd;
+    color: $dark-accent-color;
   }
 }
 
@@ -69,12 +72,12 @@
   line-height: calc(24 / 18);
 
   & span {
-    color: #3470ff;
+    color: $light-accent-color;
   }
 }
 
 .extraInfoText {
-  color: rgba(18, 20, 23, 0.5);
+  color: $secondary-dark-color;
   font-size: 12px;
   font-weight: 400;
   line-height: calc(18 / 12);
@@ -104,20 +107,20 @@
 .conditionsItem {
   padding: 7px 14px;
   border-radius: 35px;
-  background-color: #f9f9f9;
+  background-color: $items-background-color;
   font-size: 12px;
   font-weight: 400;
   line-height: calc(18 / 12);
 
   & span {
-    color: #3470ff;
+    color: $light-accent-color;
     font-weight: 600;
   }
 }
 
 .rentalButton {
   display: inline-block;
-  background: #3470ff;
+  background: $light-accent-color;
   color: #fff;
   border-radius: 12px;
   border-color: transparent;
@@ -126,9 +129,9 @@
   font-weight: 600;
   line-height: calc(20 / 14);
   margin-top: 24px;
-  transition: background-color 250ms ease-in-out;
+  @include animation (background-color);
 
   &:hover {
-    background-color: #0b44cd;
+    background-color: $dark-accent-color;
   }
 }
