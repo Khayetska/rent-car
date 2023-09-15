@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import sass from './CarItem.module.scss';
-import placeholder from 'images/placeholder.jpeg';
 import ModalWindow from 'components/ModalWindow/ModalWindow';
+import CarItemImg from 'components/CarItemImg/CarItemImg';
 
 const {
   carItem,
-  carImgWrapper,
-  carImg,
-  carImgOverlay,
   infoWrapper,
   basicInfo,
   carTitle,
@@ -44,16 +41,7 @@ export default function CarItem({ car }) {
     <>
       <li className={carItem}>
         <div>
-          <div className={carImgWrapper}>
-            <img
-              src={img ?? placeholder}
-              className={carImg}
-              alt={
-                img ? 'View of the car for rent' : 'There is no available image'
-              }
-            />
-            <div className={carImgOverlay}></div>
-          </div>
+          <CarItemImg img={img} />
           <div className={infoWrapper}>
             <div className={basicInfo}>
               <h3 className={carTitle}>

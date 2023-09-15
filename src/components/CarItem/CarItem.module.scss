@@ -8,26 +8,6 @@
     justify-content: space-between;
 }
 
-.carImgWrapper {
-    position: relative;
-}
-
-.carImg {
-    width: 274px;
-    height: 268px;
-    object-fit: cover;
-    border-radius: 14px;
-}
-
-.carImgOverlay {
-    background: linear-gradient(180deg, $secondary-dark-color 2.5%, rgba(18, 20, 23, 0.00) 41.07%);
-    height: 268px;
-    width: 274px;
-    position: absolute;
-    top: 0;
-    border-radius: 14px;
-}
-
 .infoWrapper {
     margin-top: 14px;
 }

@@ -1,0 +1,38 @@
+@import 'styles/utils/variables';
+
+.carImgWrapper {
+  position: relative;
+}
+
+.carImg {
+  width: 274px;
+  height: 268px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.carImgOverlay {
+  background: linear-gradient(
+    180deg,
+    $secondary-dark-color 2.5%,
+    rgba(18, 20, 23, 0) 41.07%
+  );
+  height: 268px;
+  width: 274px;
+  position: absolute;
+  top: 0;
+  border-radius: 14px;
+}
+
+.favoriteBtn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.favoriteIcon {
+  color: $light-accent-color;
+}
