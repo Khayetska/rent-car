@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CarsList from 'components/CarsList/CarsList';
 import { getCars, getAllCars } from 'services/api';
 import LoadMore from 'components/LoadMore/LoadMore';
+import Filter from 'components/Filter/Filter';
 
 export default function CatalogPage() {
   const [cars, setCars] = useState([]);
@@ -33,6 +34,7 @@ export default function CatalogPage() {
 
   return (
     <>
+      <Filter />
       <CarsList cars={cars} />
       {isVisible && <LoadMore onClick={handleLoadMoreClick} />}
     </>

@@ -1,0 +1,54 @@
+@import 'styles/utils/variables';
+
+.section {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.filterForm {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.select {
+  width: 224px;
+  //   color: rgba($primery-dark-text-color, 0.2);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: calc(20 / 18);
+  margin-top: 8px;
+
+  &::placeholder {
+    color: $primery-dark-text-color;
+  }
+}
+
+.selectCost {
+  width: 125px;
+}
+
+.filterLabel {
+  color: #8a8a89;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: calc(18 / 14);
+}
+
+.searchButton {
+  background-color: $light-accent-color;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: calc(20 / 14);
+  padding: 14px 44px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $dark-accent-color;
+  }
+}
