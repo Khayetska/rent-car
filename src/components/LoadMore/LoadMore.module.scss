@@ -1,0 +1,18 @@
+@import 'styles/utils/variables';
+
+.button {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 80px;
+  
+  text-decoration-line: underline;
+  text-underline-offset: 1px;
+  text-decoration-thickness: 0.01em;
+  
+  font-size: 16px;
+  font-weight: 500;
+  line-height: calc(24 / 16);
+  color: $light-accent-color;
+  background-color: transparent;
+  border: none;
+}
