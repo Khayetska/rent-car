@@ -1,4 +1,5 @@
 import CarsList from 'components/CarsList/CarsList';
+import NoContentFav from 'components/NoContentFav/NoContentFav';
 import React, { useEffect, useState } from 'react';
 
 export default function FavoritesPage() {
@@ -6,13 +7,12 @@ export default function FavoritesPage() {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('favorites'));
-    console.log(data);
     setFavorites(data);
   }, []);
 
   return (
-    <div>
-      <CarsList cars={favorites} />
-    </div>
+    <>
+      {favorites.length > 0 ? <CarsList cars={favorites} /> : <NoContentFav />}
+    </>
   );
 }

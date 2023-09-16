@@ -1,0 +1,21 @@
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      150deg,
+      (rgba(14, 14, 15, 0.070)) 20%,
+      rgba(0, 0, 0, 0.626) 35%
+    ),
+    url(../../images/back.png);
+  background-size: cover, 600px;
+  background-repeat: no-repeat;
+  background-position: center, center;
+}
+
+.text {
+  font-weight: 600;
+  font-size: 40px;
+}
