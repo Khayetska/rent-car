@@ -20,6 +20,9 @@ export default function Header() {
             <li>
               <NavLink to={'/catalog'}>Catalog</NavLink>
             </li>
+            <li>
+              <NavLink to={'/favorites'}>Favorites</NavLink>
+            </li>
           </ul>
         </nav>
         <ul className={authNav}>
