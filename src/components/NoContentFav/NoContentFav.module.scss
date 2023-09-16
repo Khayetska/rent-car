@@ -1,7 +1,5 @@
 .background {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   width: 100vw;
   height: 100vh;
   background: linear-gradient(
@@ -18,4 +16,9 @@
 .text {
   font-weight: 600;
   font-size: 40px;
+  position: absolute;
+  top: 50%;
+  width: 831px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -1,14 +1,15 @@
 import React from 'react';
 import sass from './Hero.module.scss';
+import Container from 'components/Container/Container';
 
-const { heroSection, home } = sass;
+const { heroSection } = sass;
 
 export default function Home() {
   return (
     <section className={heroSection}>
-      <div className={home}>
+      <Container>
         <p>Hero</p>
-      </div>
+      </Container>
     </section>
   );
 }
