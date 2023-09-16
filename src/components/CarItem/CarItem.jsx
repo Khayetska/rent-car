@@ -39,12 +39,12 @@ export default function CarItem({ car, onToggle, favCars }) {
 
   useEffect(() => {
     const storage = JSON.parse(localStorage.getItem('favorites'));
-    if (storage) {
-      storage.map(item => {
-        if (item.id === id) setIsFavorite(true);
-      });
-    }
-  }, []);
+
+    storage.map(function (item) {
+      if (item.id === id) setIsFavorite(true);
+      return true;
+    });
+  }, [id]);
 
   const handleFavoriteToggle = () => {
     setIsFavorite(!isFavorite);
