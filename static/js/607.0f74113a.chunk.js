@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[607],{607:function(e,r,t){t.r(r),t.d(r,{default:function(){return u}});t(791);var n={heroSection:"Hero_heroSection__IeNtu"},c=t(184),o=n.heroSection,s=n.home;function i(){return(0,c.jsx)("section",{className:o,children:(0,c.jsx)("div",{className:s,children:(0,c.jsx)("p",{children:"Hero"})})})}function u(){return(0,c.jsx)(i,{})}}}]);
-//# sourceMappingURL=607.0f74113a.chunk.js.map
