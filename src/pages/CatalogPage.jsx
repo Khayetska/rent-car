@@ -104,16 +104,13 @@ export default function CatalogPage() {
     setMaxMileage(Number(data.max));
   };
 
-  const mileageCheck = maxMileage === 0 || minMileage === 0;
   const check = !carBrend && !carPrice;
 
   return (
     <>
       <Filter onSubmit={onSubmit} />
       <CarsList cars={cars} />
-      {isVisible && check && !mileageCheck && (
-        <LoadMore onClick={handleLoadMoreClick} />
-      )}
+      {isVisible && check && <LoadMore onClick={handleLoadMoreClick} />}
     </>
   );
 }
