@@ -1,4 +1,5 @@
 @import 'styles/utils/variables';
+@import 'styles/utils/mixins';
 
 .section {
   margin-top: 20px;
@@ -12,6 +13,11 @@
   align-items: flex-end;
 }
 
+.filterInputs {
+  display: flex;
+  gap: 18px;
+}
+ 
 .select {
   width: 224px;
   //   color: rgba($primery-dark-text-color, 0.2);
@@ -25,7 +31,7 @@
   }
 }
 
-.selectCost {
+.selectPrice {
   width: 125px;
 }
 
@@ -34,6 +40,30 @@
   font-size: 14px;
   font-weight: 500;
   line-height: calc(18 / 14);
+}
+
+.mileageInputsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.miliageInput {
+  padding: 14px 0;
+  padding-left: 24px;
+  border: none;
+  color: $primery-dark-text-color;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: calc(20 / 18);
+  width: 160px;
+  background-color: $input-color;
+  border-radius: 14px 0px 0px 14px;
+  border-right: 1px solid rgba(138, 138, 137, 0.2)
+}
+
+.miliageInputTo {
+  border-radius: 0px 14px 14px 0px;
 }
 
 .searchButton {
@@ -45,6 +75,7 @@
   font-weight: 600;
   line-height: calc(20 / 14);
   padding: 14px 44px;
+  @include animation (background-color);
 
   &:hover,
   &:focus,

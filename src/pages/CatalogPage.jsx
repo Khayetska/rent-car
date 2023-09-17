@@ -8,12 +8,17 @@ export default function CatalogPage() {
   const [cars, setCars] = useState([]);
   const [page, setPage] = useState(1);
   const [isVisible, setIsVisible] = useState(true);
+  const [allCars, setAllCars] = useState(null);
+  const [carBrend, setCarBrend] = useState(null);
+  const [carPrice, setCarPrice] = useState(null);
 
   useEffect(() => {
     async function fetch() {
       try {
         const result = await getCars(page);
         const allResults = await getAllCars();
+
+        setAllCars(allResults);
 
         setCars(prevState => [...prevState, ...result]);
 
@@ -28,15 +33,58 @@ export default function CatalogPage() {
     fetch();
   }, [page]);
 
+  useEffect(() => {
+    function filter() {
+      try {
+        if (carBrend && carPrice) {
+          const filteredByBrendAndPrice = allCars
+            .filter(car => car.make.toLowerCase() === carBrend)
+            .filter(car => car.rentalPrice.replace('$', '') <= carPrice);
+
+          setCars(filteredByBrendAndPrice);
+          return;
+        }
+
+        if (carBrend) {
+          const filteredByBrend = allCars.filter(
+            car => car.make.toLowerCase() === carBrend
+          );
+
+          setCars(filteredByBrend);
+          return;
+        }
+
+        if (carPrice) {
+          const filteredByPrice = allCars.filter(
+            car => car.rentalPrice.replace('$', '') <= carPrice
+          );
+
+          setCars(filteredByPrice);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+
+    filter();
+  }, [allCars, carBrend, carPrice]);
+
   const handleLoadMoreClick = () => {
     setPage(prevState => prevState + 1);
   };
 
+  const onSubmit = data => {
+    setCarBrend(data.brand);
+    setCarPrice(data.price);
+  };
+
+  const check = !carBrend && !carPrice;
+
   return (
     <>
-      <Filter />
+      <Filter onSubmit={onSubmit} />
       <CarsList cars={cars} />
-      {isVisible && <LoadMore onClick={handleLoadMoreClick} />}
+      {isVisible && check && <LoadMore onClick={handleLoadMoreClick} />}
     </>
   );
 }

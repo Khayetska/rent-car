@@ -1,9 +1,20 @@
 import React from 'react';
 import Select from 'react-select';
+import { useForm, Controller } from 'react-hook-form';
 import sass from './Filter.module.scss';
 
-const { section, filterForm, select, selectCost, filterLabel, searchButton } =
-  sass;
+const {
+  section,
+  filterForm,
+  filterInputs,
+  select,
+  selectPrice,
+  filterLabel,
+  searchButton,
+  // mileageInputsWrapper,
+  // miliageInput,
+  // miliageInputTo,
+} = sass;
 
 const brandOptions = [
   { value: 'buick', label: 'Buick' },
@@ -27,10 +38,14 @@ const brandOptions = [
   { value: 'mercedes-benz', label: 'Mercedes-Benz' },
   { value: 'chrysler', label: 'Chrysler' },
   { value: 'kia', label: 'Kia' },
-  { value: 'land', label: 'Land' },
+  { value: 'land rover', label: 'Land Rover' },
+  { value: 'tesla', label: 'Tesla' },
+  { value: 'toyota', label: 'Toyota' },
+  { value: 'ford', label: 'Ford' },
+  { value: 'jeep', label: 'Jeep' },
 ];
 
-const costOptions = [
+const priceOptions = [
   { value: '40', label: '40' },
   { value: '50', label: '50' },
   { value: '60', label: '60' },
@@ -43,10 +58,6 @@ const costOptions = [
   { value: '130', label: '130' },
   { value: '140', label: '140' },
   { value: '150', label: '150' },
-  { value: '160', label: '160' },
-  { value: '170', label: '170' },
-  { value: '180', label: '180' },
-  { value: '190', label: '190' },
   { value: '200', label: '200' },
   { value: '250', label: '250' },
   { value: '300', label: '300' },
@@ -72,37 +83,99 @@ const styles = {
   }),
 };
 
-export default function Filter() {
+export default function Filter({ onSubmit }) {
+  // const [minValue, setMinValue] = useState(0);
+  // const [maxValue, setMaxValue] = useState(0);
+
+  // const handleMinValueChange = evt => {
+  //   setMinValue(evt.target.value);
+  // };
+
+  // const handleMaxValueChange = evt => {
+  //   setMaxValue(evt.target.value);
+  // };
+
+  const { handleSubmit, control } = useForm();
+
   return (
     <section className={section}>
-      <form className={filterForm}>
-        <div>
-          <label htmlFor="brand" className={filterLabel}>
-            Car brand
-          </label>
-          <Select
-            options={brandOptions}
-            className={`${select}`}
-            styles={styles}
+      <form className={filterForm} onSubmit={handleSubmit(onSubmit)}>
+        <div className={filterInputs}>
+          <Controller
+            control={control}
             name="brand"
-            placeholder="Enter the text"
+            render={({ field: { onChange, value } }) => (
+              <>
+                <label className={filterLabel}>
+                  Car brand
+                  <Select
+                    options={brandOptions}
+                    className={`${select}`}
+                    styles={styles}
+                    name="brand"
+                    placeholder="Enter the text"
+                    value={brandOptions.find(b => b.value === value)}
+                    onChange={val => onChange(val.value)}
+                  />
+                </label>
+              </>
+            )}
+          />
+          <Controller
+            control={control}
+            name={'price'}
+            render={({ field: { onChange, value } }) => (
+              <>
+                <label className={filterLabel}>
+                  Price/ 1 hour
+                  <Select
+                    options={priceOptions}
+                    className={`${select} ${selectPrice}`}
+                    styles={styles}
+                    name="price"
+                    placeholder="To $"
+                    value={priceOptions.find(p => p.value === value)}
+                    onChange={val => onChange(val.value)}
+                  />
+                </label>
+              </>
+            )}
           />
         </div>
-        <div>
-          <label htmlFor="cost" className={filterLabel}>
-            Price/ 1 hour
-          </label>
+        {/* <div>
+          <label className={filterLabel}>Price/ 1 hour</label>
           <Select
             options={costOptions}
             className={`${select} ${selectCost}`}
             styles={styles}
             name="cost"
             placeholder="To $"
+            // {...register('cost')}
           />
-        </div>
-        <div>
-          <label className={filterLabel}>Сar mileage / km</label>
-        </div>
+        </div> */}
+        {/* <div className={mileageInputsWrapper}>
+          <label className={filterLabel}>Car mileage / km</label>
+          <div>
+            <input
+              type="number"
+              placeholder="From"
+              className={miliageInput}
+              value={minValue}
+              onChange={handleMinValueChange}
+              max={maxValue}
+              name="min"
+            />
+            <input
+              type="number"
+              placeholder="To"
+              className={`${miliageInput} ${miliageInputTo}`}
+              value={maxValue}
+              onChange={handleMaxValueChange}
+              min={minValue}
+              name="max"
+            />
+          </div>
+        </div> */}
         <button type="submit" className={searchButton}>
           Search
         </button>
