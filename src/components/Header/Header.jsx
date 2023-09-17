@@ -1,50 +1,42 @@
 import React from 'react';
-import sass from './Header.module.scss';
 import { Link, NavLink } from 'react-router-dom';
-import rental_logo from 'images/rental_logo.png';
 import Container from 'components/Container/Container';
+import Contacts from 'components/Contacts/Contacts';
+import sass from './Header.module.scss';
+import rental_logo from 'images/rental_logo.png';
 
-const { header, contentWrapper, logo, nav, authNav } = sass;
+const { contentWrapper, logo, navList, active, inactive } = sass;
 
 export default function Header() {
+  const setActive = ({ isActive }) => (isActive ? active : inactive);
+
   return (
-    <header className={header}>
+    <header>
       <Container>
         <div className={contentWrapper}>
           <Link to={'/'}>
             <img src={rental_logo} alt="Logo of the company" className={logo} />
           </Link>
-          <nav className={nav}>
-            <ul>
+          <nav>
+            <ul className={navList}>
               <li>
-                <NavLink to={'/'}>Home</NavLink>
+                <NavLink to={'/'} className={setActive}>
+                  Home
+                </NavLink>
               </li>
               <li>
-                <NavLink to={'/catalog'}>Catalog</NavLink>
+                <NavLink to={'/catalog'} className={setActive}>
+                  Catalog
+                </NavLink>
               </li>
               <li>
-                <NavLink to={'/favorites'}>Favorites</NavLink>
+                <NavLink to={'/favorites'} className={setActive}>
+                  Favorites
+                </NavLink>
               </li>
             </ul>
           </nav>
-          <ul className={authNav}>
-            {/* <li>
-            <a href="mailto:info@devstudio.com" class="auth-nav__link link">
-              <svg class="envelope" width="16" height="12">
-                <use href="./images/icons.svg#envelope"></use>
-              </svg>
-              info@devstudio.com
-            </a>
-          </li>
-          <li>
-            <a href="tel:380961111111" class="auth-nav__link link">
-              <svg class="smartphone" width="10" height="16">
-                <use href="./images/icons.svg#smartphone"></use>
-              </svg>
-              +38 096 111 11 11
-            </a>
-          </li> */}
-          </ul>
+          <Contacts />
         </div>
       </Container>
     </header>

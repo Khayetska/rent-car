@@ -1,10 +1,31 @@
+@import 'styles/utils/variables';
+
 .logo {
-    width: 100px;
-    border-radius: 20px;
+  width: 100px;
+  border-radius: 20px;
 }
 
 .contentWrapper {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 40px;
+}
+
+.navList {
+  display: flex;
+  gap: 20px;
+}
+
+.active,
+.inactive {
+  font-size: 18px;
+}
+
+.inactive:hover {
+  color: $dark-accent-color;
+}
+
+.active {
+  color: $light-accent-color;
 }
