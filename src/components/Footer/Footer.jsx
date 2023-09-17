@@ -2,6 +2,7 @@ import React from 'react';
 import { AiFillGithub as Icon } from 'react-icons/ai';
 import sass from './Footer.module.scss';
 import Container from 'components/Container/Container';
+import Contacts from 'components/Contacts/Contacts';
 
 const { footer, footerContent, footerText, footerLink } = sass;
 
@@ -24,6 +25,7 @@ export default function Footer() {
               </a>
             </p>
           </div>
+          <Contacts />
         </div>
       </Container>
     </footer>

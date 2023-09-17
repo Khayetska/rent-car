@@ -5,6 +5,8 @@
     width: 100%;
     padding: 30px;
     border-top: 1px solid $secondary-light-color;
+    display: flex;
+    justify-content: space-around;
 }
 
 .footerContent {
