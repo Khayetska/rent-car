@@ -42,6 +42,26 @@
   line-height: calc(18 / 14);
 }
 
+.inputsWrapper {
+  display: flex;
+}
+
+.inputMileage {
+  position: relative;
+}
+
+.mileageInputLabel {
+  color: $secondary-dark-color;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: calc(20 / 18);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+  z-index: 2;
+}
+
 .mileageInputsWrapper {
   display: flex;
   flex-direction: column;
@@ -49,6 +69,7 @@
 }
 
 .miliageInput {
+  position: relative;
   padding: 14px 0;
   padding-left: 24px;
   border: none;
@@ -59,11 +80,13 @@
   width: 160px;
   background-color: $input-color;
   border-radius: 14px 0px 0px 14px;
-  border-right: 1px solid rgba(138, 138, 137, 0.2)
+  border-right: 1px solid rgba(138, 138, 137, 0.2);
+  padding-left: 70px;
 }
 
 .miliageInputTo {
   border-radius: 0px 14px 14px 0px;
+  padding-left: 60px;
 }
 
 .searchButton {

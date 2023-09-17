@@ -3,6 +3,11 @@ import CarsList from 'components/CarsList/CarsList';
 import { getCars, getAllCars } from 'services/api';
 import LoadMore from 'components/LoadMore/LoadMore';
 import Filter from 'components/Filter/Filter';
+import {
+  filtereByBrend,
+  filtereByPrice,
+  filterByMileage,
+} from 'helpers/filter';
 
 export default function CatalogPage() {
   const [cars, setCars] = useState([]);
@@ -11,6 +16,8 @@ export default function CatalogPage() {
   const [allCars, setAllCars] = useState(null);
   const [carBrend, setCarBrend] = useState(null);
   const [carPrice, setCarPrice] = useState(null);
+  const [minMileage, setMinMileage] = useState(0);
+  const [maxMileage, setMaxMileage] = useState(0);
 
   useEffect(() => {
     async function fetch() {
@@ -35,39 +42,56 @@ export default function CatalogPage() {
 
   useEffect(() => {
     function filter() {
-      try {
-        if (carBrend && carPrice) {
-          const filteredByBrendAndPrice = allCars
-            .filter(car => car.make.toLowerCase() === carBrend)
-            .filter(car => car.rentalPrice.replace('$', '') <= carPrice);
+      if (carBrend && carPrice) {
+        const filteredByBrend = filtereByBrend(allCars, carBrend);
+        const filteredByBrendAndPrice = filtereByPrice(
+          filteredByBrend,
+          carPrice
+        );
 
-          setCars(filteredByBrendAndPrice);
-          return;
-        }
+        setCars(filteredByBrendAndPrice);
 
-        if (carBrend) {
-          const filteredByBrend = allCars.filter(
-            car => car.make.toLowerCase() === carBrend
+        if (Number(maxMileage) !== 0 || Number(minMileage) !== 0) {
+          filterByMileage(
+            filteredByBrendAndPrice,
+            maxMileage,
+            minMileage,
+            setCars
           );
-
-          setCars(filteredByBrend);
-          return;
         }
 
-        if (carPrice) {
-          const filteredByPrice = allCars.filter(
-            car => car.rentalPrice.replace('$', '') <= carPrice
-          );
+        return;
+      }
 
-          setCars(filteredByPrice);
+      if (carBrend) {
+        const filteredByBrend = filtereByBrend(allCars, carBrend);
+
+        setCars(filteredByBrend);
+
+        if (Number(maxMileage) !== 0 || Number(minMileage) !== 0) {
+          filterByMileage(filteredByBrend, maxMileage, minMileage, setCars);
         }
-      } catch (error) {
-        console.log(error.message);
+
+        return;
+      }
+
+      if (carPrice) {
+        const filteredByPrice = filtereByPrice(allCars, carPrice);
+
+        setCars(filteredByPrice);
+
+        if (Number(maxMileage) !== 0 || Number(minMileage) !== 0) {
+          filterByMileage(filteredByPrice, maxMileage, minMileage, setCars);
+        }
+      }
+
+      if (Number(maxMileage) !== 0 || Number(minMileage) !== 0) {
+        filterByMileage(allCars, maxMileage, minMileage, setCars);
       }
     }
 
     filter();
-  }, [allCars, carBrend, carPrice]);
+  }, [allCars, carBrend, carPrice, minMileage, maxMileage]);
 
   const handleLoadMoreClick = () => {
     setPage(prevState => prevState + 1);
@@ -76,15 +100,20 @@ export default function CatalogPage() {
   const onSubmit = data => {
     setCarBrend(data.brand);
     setCarPrice(data.price);
+    setMinMileage(Number(data.min));
+    setMaxMileage(Number(data.max));
   };
 
+  const mileageCheck = maxMileage === 0 || minMileage === 0;
   const check = !carBrend && !carPrice;
 
   return (
     <>
       <Filter onSubmit={onSubmit} />
       <CarsList cars={cars} />
-      {isVisible && check && <LoadMore onClick={handleLoadMoreClick} />}
+      {isVisible && check && !mileageCheck && (
+        <LoadMore onClick={handleLoadMoreClick} />
+      )}
     </>
   );
 }

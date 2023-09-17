@@ -1,6 +1,8 @@
 import React from 'react';
 import Select from 'react-select';
 import { useForm, Controller } from 'react-hook-form';
+import makes from '../../data/makes.json';
+import price from '../../data/price.json';
 import sass from './Filter.module.scss';
 
 const {
@@ -10,59 +12,24 @@ const {
   select,
   selectPrice,
   filterLabel,
+  mileageInputLabel,
+  inputMileage,
   searchButton,
-  // mileageInputsWrapper,
-  // miliageInput,
-  // miliageInputTo,
+  mileageInputsWrapper,
+  miliageInput,
+  inputsWrapper,
+  miliageInputTo,
 } = sass;
 
-const brandOptions = [
-  { value: 'buick', label: 'Buick' },
-  { value: 'volvo', label: 'Volvo' },
-  { value: 'hummer', label: 'HUMMER' },
-  { value: 'subaru', label: 'Subaru' },
-  { value: 'mitsubishi', label: 'Mitsubishi' },
-  { value: 'nissan', label: 'Nissan' },
-  { value: 'lincoln', label: 'Lincoln' },
-  { value: 'gmc', label: 'GMC' },
-  { value: 'hyundai', label: 'Hyundai' },
-  { value: 'mini', label: 'MINI' },
-  { value: 'bentley', label: 'Bentley' },
-  { value: 'mercedes-benz', label: 'Mercedes-Benz' },
-  { value: 'aston martin', label: 'Aston Martin' },
-  { value: 'pontiac', label: 'Pontiac' },
-  { value: 'lamborghini', label: 'Lamborghini' },
-  { value: 'audi', label: 'Audi' },
-  { value: 'bmw', label: 'BMW' },
-  { value: 'chevrolet', label: 'Chevrolet' },
-  { value: 'mercedes-benz', label: 'Mercedes-Benz' },
-  { value: 'chrysler', label: 'Chrysler' },
-  { value: 'kia', label: 'Kia' },
-  { value: 'land rover', label: 'Land Rover' },
-  { value: 'tesla', label: 'Tesla' },
-  { value: 'toyota', label: 'Toyota' },
-  { value: 'ford', label: 'Ford' },
-  { value: 'jeep', label: 'Jeep' },
-];
+const priceOptions = price.map(item => ({
+  value: item,
+  label: item,
+}));
 
-const priceOptions = [
-  { value: '40', label: '40' },
-  { value: '50', label: '50' },
-  { value: '60', label: '60' },
-  { value: '70', label: '70' },
-  { value: '80', label: '80' },
-  { value: '90', label: '90' },
-  { value: '100', label: '100' },
-  { value: '110', label: '110' },
-  { value: '120', label: '120' },
-  { value: '130', label: '130' },
-  { value: '140', label: '140' },
-  { value: '150', label: '150' },
-  { value: '200', label: '200' },
-  { value: '250', label: '250' },
-  { value: '300', label: '300' },
-  { value: '500', label: '500' },
-];
+const brandOptions = makes.map(make => ({
+  value: make.toLowerCase(),
+  label: make,
+}));
 
 const styles = {
   option: (defaultStyles, state) => ({
@@ -84,18 +51,7 @@ const styles = {
 };
 
 export default function Filter({ onSubmit }) {
-  // const [minValue, setMinValue] = useState(0);
-  // const [maxValue, setMaxValue] = useState(0);
-
-  // const handleMinValueChange = evt => {
-  //   setMinValue(evt.target.value);
-  // };
-
-  // const handleMaxValueChange = evt => {
-  //   setMaxValue(evt.target.value);
-  // };
-
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, register } = useForm();
 
   return (
     <section className={section}>
@@ -116,6 +72,7 @@ export default function Filter({ onSubmit }) {
                     placeholder="Enter the text"
                     value={brandOptions.find(b => b.value === value)}
                     onChange={val => onChange(val.value)}
+                    aria-label="Filter cars by their brand"
                   />
                 </label>
               </>
@@ -136,46 +93,40 @@ export default function Filter({ onSubmit }) {
                     placeholder="To $"
                     value={priceOptions.find(p => p.value === value)}
                     onChange={val => onChange(val.value)}
+                    aria-label="Filter cars by their price per 1 hour"
                   />
                 </label>
               </>
             )}
           />
         </div>
-        {/* <div>
-          <label className={filterLabel}>Price/ 1 hour</label>
-          <Select
-            options={costOptions}
-            className={`${select} ${selectCost}`}
-            styles={styles}
-            name="cost"
-            placeholder="To $"
-            // {...register('cost')}
-          />
-        </div> */}
-        {/* <div className={mileageInputsWrapper}>
-          <label className={filterLabel}>Car mileage / km</label>
-          <div>
-            <input
-              type="number"
-              placeholder="From"
-              className={miliageInput}
-              value={minValue}
-              onChange={handleMinValueChange}
-              max={maxValue}
-              name="min"
-            />
-            <input
-              type="number"
-              placeholder="To"
-              className={`${miliageInput} ${miliageInputTo}`}
-              value={maxValue}
-              onChange={handleMaxValueChange}
-              min={minValue}
-              name="max"
-            />
+        <div className={mileageInputsWrapper}>
+          <legend className={filterLabel}>Car mileage / km</legend>
+          <div className={inputsWrapper}>
+            <div className={inputMileage}>
+              <label htmlFor="min" className={mileageInputLabel}>
+                From
+              </label>
+              <input
+                type="number"
+                className={miliageInput}
+                step={100}
+                {...register('min')}
+              />
+            </div>
+            <div className={inputMileage}>
+              <label htmlFor="max" className={mileageInputLabel}>
+                To
+              </label>
+              <input
+                type="number"
+                className={`${miliageInput} ${miliageInputTo}`}
+                step={100}
+                {...register('max')}
+              />
+            </div>
           </div>
-        </div> */}
+        </div>
         <button type="submit" className={searchButton}>
           Search
         </button>
