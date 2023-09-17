@@ -48,6 +48,7 @@ export default function FavoritesPage() {
     }
 
     filter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [carBrend, carPrice]);
 
   const onSubmit = data => {
