@@ -1,8 +1,36 @@
+@import 'styles/utils/variables';
+
 .heroSection {
-  background-image: url(../../images/smoke.png), url(../../images/background_car.png);
+  background-image: url(../../images/smoke.png),
+    url(../../images/background_car.png);
   background-repeat: no-repeat;
   background-size: cover, 800px;
   background-position-x: 0, center;
   background-position-y: 0, 200px;
-  height: 100vh;
+  height: 700px;
 }
+
+.titleWrapper {
+  margin-top: 60px;
+  width: 800px;
+}
+
+.heroTitle {
+  font-weight: 600;
+  font-size: 80px;
+  margin-bottom: 20px;
+
+  & span {
+    color: $light-accent-color;
+  }
+}
+
+// .heroButton {
+//   // background-color: $secondary-light-color;
+//   // padding: 10px 14px;
+//   // border: none;
+//   // border-radius: 8px;
+//   display: flex;
+//   align-items: center;
+//   gap: 5px;
+// }
