@@ -1,0 +1,30 @@
+@import 'styles/utils/variables';
+@import 'styles/utils/mixins';
+
+.footer {
+    width: 100%;
+    padding: 30px;
+    border-top: 1px solid $secondary-light-color;
+}
+
+.footerContent {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+
+.footerText {
+    font-size: 15px;
+    margin: 0;
+}
+
+.footerLink {
+    color: $light-accent-color;
+    @include animation (color);
+
+    &:hover {
+        color: $dark-accent-color;
+    }
+}
