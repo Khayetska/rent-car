@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react';
 import sass from './CarItem.module.scss';
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 import placeholder from 'images/placeholder.jpeg';
-import sassImg from '../CarItemImg/CarItemImg.module.scss';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
-
-const { carImgWrapper, carImg, carImgOverlay, favoriteBtn, favoriteIcon } =
-  sassImg;
 
 const {
   carItem,
@@ -17,6 +13,11 @@ const {
   extraInfo,
   extraInfoText,
   moreInfoButton,
+  carImgWrapper,
+  carImg,
+  carImgOverlay,
+  favoriteBtn,
+  favoriteIcon,
 } = sass;
 
 export default function CarItem({ car, onToggle, favCars }) {
