@@ -80,6 +80,10 @@ export default function ModalWindow({ isOpen = false, onClose, car }) {
         </button>
         <img
           src={img ?? placeholder}
+          onError={event => {
+            event.currentTarget.src = placeholder;
+            event.currentTarget.onerror = null;
+          }}
           alt={img ? 'View of the car for rent' : 'There is no available image'}
           className={carImg}
         />
