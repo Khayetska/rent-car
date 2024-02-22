@@ -89,6 +89,10 @@ export default function CarItem({ car, onToggle, favCars }) {
               alt={
                 img ? 'View of the car for rent' : 'There is no available image'
               }
+              onError={event => {
+                event.currentTarget.src = placeholder;
+                event.currentTarget.onerror = null;
+              }}
             />
             <div className={carImgOverlay}></div>
 
